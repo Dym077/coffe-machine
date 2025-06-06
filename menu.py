@@ -9,12 +9,12 @@ class MenuItem:
             "coffee": coffee
         }
 
-def customize(self, extra_water=0, extra_milk=0, extra_coffee=0):
-    """Adjusts the ingredients of the drink"""
-    self.ingredients["water"] *= extra_water
-    self.ingredients["milk"] *= extra_milk
-    self.ingredients["coffee"] *= extra_coffee
-    return self
+    def customize(self, extra_water=0, extra_milk=0, extra_coffee=0):
+        """Adjusts the ingredients of the drink"""
+        self.ingredients["water"] *= extra_water
+        self.ingredients["milk"] *= extra_milk
+        self.ingredients["coffee"] *= extra_coffee
+        return self
 
 class Menu:
     """Models the Menu with drinks."""

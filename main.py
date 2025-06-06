@@ -18,12 +18,18 @@ while machine_on:
     elif user_input == "off":
         machine_on = False
         print("Machine is off")
-
-    # TODO 2: Check Resources sufficient?
-
     else:
         drink = menu.find_drink(user_input)
         if drink:
+            # TODO 6: Customize drink
+            extra_water = int(input("Extra water (ml)? (0 for none):"))
+            extra_milk = int(input("Extra milk (ml)? (0 for none):"))
+            extra_coffee = int(input("Extra coffee (ml)? (0 for none):"))
+
+            drink.customize(extra_water, extra_milk, extra_coffee)
+
+
+            # TODO 2: Check Resources sufficient?
             if coffee_maker.is_resource_sufficient(drink):
                 # TODO 3: Process coins
                 # TODO 4: Check transaction successful
