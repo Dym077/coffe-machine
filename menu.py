@@ -11,9 +11,10 @@ class MenuItem:
 
     def customize(self, extra_water=0, extra_milk=0, extra_coffee=0):
         """Adjusts the ingredients of the drink"""
-        self.ingredients["water"] *= extra_water
-        self.ingredients["milk"] *= extra_milk
-        self.ingredients["coffee"] *= extra_coffee
+        self.ingredients["water"] += extra_water
+        self.ingredients["milk"] += extra_milk
+        self.ingredients["coffee"] += extra_coffee
+        print(f"Customized ingredients: {self.ingredients}")
         return self
 
 class Menu:
@@ -36,5 +37,6 @@ class Menu:
         """Searches the menu for a particular drink by name. Returns that item if it exists, otherwise returns None"""
         for item in self.menu:
             if item.name == order_name:
+                print(f"Found drink: {item.name}, Ingredients: {item.ingredients}")
                 return item
         print("Sorry that item is not available.")
