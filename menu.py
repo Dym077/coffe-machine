@@ -5,6 +5,13 @@ EXTRA_INGREDIENT_COSTS = {
         "coffee": 0.005 # $0.001 per g coffee
     }
 
+# TODO 8: Limit amount of extra ingredients
+MAX_EXTRA_INGREDIENTS = {
+    "water": 100, # Max 100 ml of extra water
+    "milk": 50, # Max 50 ml of extra milk
+    "coffee": 10 # Max 10 ml of extra coffee
+}
+
 
 class MenuItem:
     """Models each Menu Item."""
@@ -18,7 +25,19 @@ class MenuItem:
         }
 
     def customize(self, extra_water=0, extra_milk=0, extra_coffee=0):
-        """Adjusts the ingredients of the drink"""
+        """Adjusts the ingredients of the drink and calculates the extra cost."""
+        if extra_water > MAX_EXTRA_INGREDIENTS["water"]:
+            print(f"Sorry, you can only add a maximum of {MAX_EXTRA_INGREDIENTS['water']} ml extra water.")
+            extra_water = 0 # Reset allowed amount
+
+        if extra_milk > MAX_EXTRA_INGREDIENTS["milk"]:
+            print(f"Sorry, you can only add a maximum of {MAX_EXTRA_INGREDIENTS['milk']} ml extra milk.")
+            extra_milk = 0 # Reset allowed amount
+
+        if extra_coffee > MAX_EXTRA_INGREDIENTS["coffee"]:
+            print(f"Sorry, you can only add a maximum of {MAX_EXTRA_INGREDIENTS['coffee']} ml extra coffee.")
+            extra_coffee = 0 # Reset allowed amount
+
         self.ingredients["water"] += extra_water
         self.ingredients["milk"] += extra_milk
         self.ingredients["coffee"] += extra_coffee
@@ -29,6 +48,7 @@ class MenuItem:
             extra_coffee * EXTRA_INGREDIENT_COSTS["coffee"]
         )
 
+        self.cost += extra_cost
         return self
 
 class Menu:
