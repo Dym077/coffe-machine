@@ -1,3 +1,11 @@
+# TODO 7: Calculate cost for extra ingredients
+EXTRA_INGREDIENT_COSTS = {
+        "water": 0.001, # $0.001 per ml water
+        "milk": 0.002, # $0.002 per ml milk
+        "coffee": 0.005 # $0.001 per g coffee
+    }
+
+
 class MenuItem:
     """Models each Menu Item."""
     def __init__(self, name, water, milk, coffee, cost):
@@ -14,7 +22,13 @@ class MenuItem:
         self.ingredients["water"] += extra_water
         self.ingredients["milk"] += extra_milk
         self.ingredients["coffee"] += extra_coffee
-        print(f"Customized ingredients: {self.ingredients}")
+
+        extra_cost = (
+            extra_water * EXTRA_INGREDIENT_COSTS["water"] +
+            extra_milk * EXTRA_INGREDIENT_COSTS["milk"] +
+            extra_coffee * EXTRA_INGREDIENT_COSTS["coffee"]
+        )
+
         return self
 
 class Menu:
@@ -37,6 +51,6 @@ class Menu:
         """Searches the menu for a particular drink by name. Returns that item if it exists, otherwise returns None"""
         for item in self.menu:
             if item.name == order_name:
-                print(f"Found drink: {item.name}, Ingredients: {item.ingredients}")
+                # print(f"Found drink: {item.name}, Ingredients: {item.ingredients}")
                 return item
         print("Sorry that item is not available.")

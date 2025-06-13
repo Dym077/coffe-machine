@@ -24,7 +24,7 @@ class CoffeeMaker:
 
     def make_coffee(self, order):
         """Deducts the required ingredients from the resources."""
-        print(f"Ingredients to deduct: {order.ingredients}")
+        # print(f"Ingredients to deduct: {order.ingredients}")
         for item in order.ingredients:
             self.resources[item] -= order.ingredients[item]
         print(f"Here is your {order.name} ☕️. Enjoy!")
